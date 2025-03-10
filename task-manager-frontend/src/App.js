@@ -5,7 +5,7 @@ function App() {
   const [newTask, setNewTask] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/tasks")
+    fetch("https://taskmanagerr.onrender.com/api/tasks")
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched tasks:", data);
@@ -17,7 +17,8 @@ function App() {
   const addTask = async () => {
     if (!newTask.trim()) return;
     try {
-      const res = await fetch("http://localhost:5000/api/tasks", {
+      const res = await fetch("https://taskmanagerr.onrender.com/api/tasks",
+ {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: newTask, completed: false }),
@@ -32,7 +33,7 @@ function App() {
 
   const deleteTask = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/tasks/${id}`, { method: "DELETE" });
+      await fetch(`https://taskmanagerr.onrender.com/api/tasks/${id}`, { method: "DELETE" });
       setTasks(tasks.filter((task) => task._id !== id));
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -41,7 +42,7 @@ function App() {
 
   const toggleTaskCompletion = async (id, completed) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      const res = await fetch(`https://taskmanagerr.onrender.com/api/tasks/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ completed: !completed }),
